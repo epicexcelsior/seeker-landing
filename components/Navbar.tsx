@@ -26,7 +26,7 @@ export function Navbar() {
       
       <div className="hidden md:flex items-center gap-8">
         <Link href="#why" className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-seeker-gold after:transition-all hover:after:w-full">
-          Why Seeker?
+          Why Seeker Eats?
         </Link>
         <Link href="#waitlist" className="px-6 py-2.5 text-sm font-bold text-seeker-blue bg-gradient-to-r from-seeker-gold to-seeker-gold-light rounded-full hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 transform">
           Connect

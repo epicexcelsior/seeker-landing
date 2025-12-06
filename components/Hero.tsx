@@ -50,7 +50,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 font-light leading-relaxed"
         >
-          Experience decentralized delivery. <span className="text-white font-medium">Fairer prices</span> for you, <span className="text-white font-medium">better pay</span> for drivers. 
+          Pay with <span className="text-white font-medium">USDC stablecoins</span> for <span className="text-white font-medium">lower prices</span> on every order. 
           Powered by the speed of Solana.
         </motion.p>
 
