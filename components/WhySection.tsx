@@ -53,7 +53,7 @@ export function WhySection() {
             transition={{ delay: 0.1 }}
             className="text-xl text-gray-400 max-w-2xl mx-auto"
           >
-            We're rebuilding food delivery from the ground up to be fair, fast, and transparent.
+            We&apos;re rebuilding food delivery from the ground up to be fair, fast, and transparent.
           </motion.p>
         </div>
 

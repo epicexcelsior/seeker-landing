@@ -6,7 +6,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-32 md:pt-40">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -65,7 +65,7 @@ export function Hero() {
             className="group relative px-8 py-4 bg-gradient-to-r from-seeker-red to-red-600 text-white font-bold rounded-full overflow-hidden shadow-[0_0_30px_rgba(198,40,40,0.4)] hover:shadow-[0_0_50px_rgba(198,40,40,0.6)] transition-all duration-300 hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2 text-lg">
-              Get Early Access <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Connect With Us <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
@@ -75,6 +75,28 @@ export function Hero() {
           >
             Learn More
           </a>
+        </motion.div>
+
+        {/* YouTube Embed Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          className="mt-24 w-full max-w-5xl mx-auto"
+        >
+          <div className="text-center mb-12">
+             <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">Watch the Demo</h2>
+             <p className="text-xl text-gray-400 max-w-2xl mx-auto">See how Seeker Eats is changing the game.</p>
+          </div>
+          <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900">
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/iED8u1aI5sY"
+              title="Seeker Eats Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </motion.div>
       </div>
       
