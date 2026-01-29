@@ -1,9 +1,48 @@
 "use client";
 
+import { useState } from 'react';
+
 import { motion } from "framer-motion";
-import { Send, Sparkles } from "lucide-react";
+import { Send, Sparkles, Check } from "lucide-react";
 
 export function Waitlist() {
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setLoading(true);
+    setError('');
+    
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_RELAY_API_URL || 'http://localhost:3000'}/waitlist/join`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+        
+        if (res.ok) {
+            setSubmitted(true);
+            setEmail('');
+        } else {
+            const data = await res.json();
+            // If already on list, treat as success but show different message or same
+             if (res.status === 200 && data.message === 'Already on waitlist') {
+                 setSubmitted(true);
+             } else {
+                 setError(data.message || 'Something went wrong');
+             }
+        }
+    } catch (e) {
+        setError('Network error. Please try again.');
+    } finally {
+        setLoading(false);
+    }
+  };
+
   return (
     <section id="waitlist" className="py-32 bg-black relative overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 bg-gradient-to-b from-seeker-blue/20 to-black pointer-events-none" />
@@ -25,11 +64,41 @@ export function Waitlist() {
         >
           
           <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
-            Connect With Us
+            Join the Waitlist
           </h2>
           <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto">
-            Follow our journey, check out the code, or see our hackathon submission.
+            Get early access and exclusive updates.
           </p>
+
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-16 relative">
+            <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                className="w-full pl-6 pr-14 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-seeker-gold/50 focus:ring-1 focus:ring-seeker-gold/50 transition-all font-medium"
+            />
+            <button 
+                disabled={loading}
+                type="submit"
+                className="absolute right-2 top-2 p-2 rounded-full bg-seeker-gold text-black hover:bg-yellow-400 transition-colors disabled:opacity-50"
+            >
+                {loading ? <div className="animate-spin w-5 h-5 border-2 border-black border-t-transparent rounded-full" /> : <Send className="w-5 h-5" />}
+            </button>
+            {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
+            </form>
+          ) : (
+            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6 mb-16 max-w-md mx-auto flex items-center gap-4">
+                <div className="bg-emerald-500/20 p-2 rounded-full text-emerald-500">
+                    <Sparkles className="w-6 h-6" />
+                </div>
+                <div className="text-left">
+                    <h3 className="text-white font-bold">You're on the list!</h3>
+                    <p className="text-emerald-200/70 text-sm">We'll be in touch soon.</p>
+                </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {/* X (Twitter) */}
