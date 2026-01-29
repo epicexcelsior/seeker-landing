@@ -90,7 +90,8 @@ export default function ConnectExplainerPage() {
                   <div>
                     <h3 className="text-xl font-semibold">Click Connect</h3>
                     <p className="text-gray-400 text-sm">
-                      Auth directly with Square
+                      Login directly with Square (we can't access your Square
+                      account)
                     </p>
                   </div>
                 </div>
@@ -102,7 +103,8 @@ export default function ConnectExplainerPage() {
                   <div>
                     <h3 className="text-xl font-semibold">Approve Access</h3>
                     <p className="text-gray-400 text-sm">
-                      Grant menu & order permissions
+                      Grant menu & order permissions. You can revoke this at any
+                      time.
                     </p>
                   </div>
                 </div>
@@ -134,11 +136,11 @@ export default function ConnectExplainerPage() {
                     </li>
                     <li className="flex gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
-                      Order creation
+                      Create and pay for orders
                     </li>
                     <li className="flex gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
-                      Business profile
+                      Common business info
                     </li>
                   </ul>
                 </div>
