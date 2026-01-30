@@ -163,26 +163,7 @@ export function Hero() {
           </a>
         </motion.div>
 
-        {/* Download App CTA - Coming Soon */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 2.7 }}
-          className="mt-8"
-        >
-          <p className="text-white/70 text-sm mb-3 font-mono">Coming Soon</p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <button className="px-5 py-3 border-2 border-white/20 text-white/40 font-bold text-xs cursor-not-allowed">
-              iOS App Store
-            </button>
-            <button className="px-5 py-3 border-2 border-white/20 text-white/40 font-bold text-xs cursor-not-allowed">
-              Google Play
-            </button>
-            <button className="px-5 py-3 border-2 border-white/20 text-white/40 font-bold text-xs cursor-not-allowed">
-              Solana Mobile Dapp Store
-            </button>
-          </div>
-        </motion.div>
+
       </motion.div>
 
       {/* Scroll Indicator */}
