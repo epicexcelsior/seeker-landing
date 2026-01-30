@@ -5,16 +5,18 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
-// Letter animation component
-function AnimatedTitle({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
+// Letter animation component - flies in from left side of screen
+function AnimatedTitle({ text, className, delay = 0, reverse = false }: { text: string; className?: string; delay?: number; reverse?: boolean }) {
   const letters = text.split("");
+  // If reverse is true, animate from last letter to first (right to left)
+  const animatedLetters = reverse ? [...letters].reverse() : letters;
   
   const container = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.03,
+        staggerChildren: 0.04,
         delayChildren: delay,
       },
     },
@@ -23,15 +25,16 @@ function AnimatedTitle({ text, className, delay = 0 }: { text: string; className
   const child = {
     hidden: {
       opacity: 0,
-      x: -50,
+      x: "-100vw", // Start from far left off-screen
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
         type: "spring" as const,
-        stiffness: 300,
-        damping: 20,
+        stiffness: 100,
+        damping: 15,
+        mass: 0.8,
       },
     },
   };
@@ -43,9 +46,9 @@ function AnimatedTitle({ text, className, delay = 0 }: { text: string; className
       initial="hidden"
       animate="visible"
     >
-      {letters.map((letter, index) => (
+      {(reverse ? animatedLetters : letters).map((letter, index) => (
         <motion.span
-          key={index}
+          key={reverse ? letters.length - 1 - index : index}
           variants={child}
           className="inline-block"
           style={{ whiteSpace: letter === " " ? "pre" : "normal" }}
@@ -121,11 +124,11 @@ export function Hero() {
         <div className="mb-6">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none">
             <span className="block text-white font-mono drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
-              <AnimatedTitle text="SEEKER EATS" delay={0.3} />
+              <AnimatedTitle text="SEEKER EATS" delay={0.3} reverse={true} />
             </span>
             <span className="block text-3xl md:text-5xl lg:text-6xl mt-4">
               <span className="text-seeker-gold drop-shadow-[0_0_20px_rgba(212,175,55,0.5)]">
-                <AnimatedTitle text="PAY WITH STABLECOINS" delay={0.6} />
+                <AnimatedTitle text="TURN YOUR STABLECOINS INTO FOOD" delay={1.2} reverse={true} />
               </span>
             </span>
           </h1>
@@ -135,18 +138,18 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
+          transition={{ duration: 0.6, delay: 2.5 }}
           className="text-lg md:text-2xl text-white max-w-3xl mx-auto mb-12 font-light drop-shadow-md"
         >
-          <span className="font-bold text-seeker-gold">Turn your stablecoins into food.</span>{" "}
-          Fast, secure, and decentralized food delivery on Solana.
+          <span className="font-bold text-seeker-gold">Pay for your food pickup & delivery with stablecoins.</span>{" "}
+          Fast, secure, and decentralized on Solana.
         </motion.p>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
+          transition={{ duration: 0.6, delay: 3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
@@ -164,7 +167,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
+          transition={{ duration: 0.6, delay: 3.2 }}
           className="mt-8"
         >
           <p className="text-white/70 text-sm mb-3 font-mono">Coming Soon</p>
@@ -183,7 +186,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.5 }}
+        transition={{ delay: 3.5, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.div
