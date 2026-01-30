@@ -77,7 +77,7 @@ export default function ConnectExplainerPage() {
                   <span className="text-seeker-gold">Restaurant</span>
                 </h1>
                 <p className="text-xl text-gray-400">
-                  Join the crypto-native food delivery revolution.
+                  Join the food delivery revolution.
                 </p>
               </div>
 
