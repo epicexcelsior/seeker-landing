@@ -4,10 +4,19 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { GlobalEffects } from "@/components/GlobalEffects";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: 'swap',
+  preload: false,
+  fallback: ['system-ui', 'sans-serif'],
+});
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  display: 'swap',
+  preload: false,
+  fallback: ['monospace'],
 });
 
 export const metadata: Metadata = {
