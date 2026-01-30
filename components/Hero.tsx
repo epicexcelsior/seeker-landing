@@ -8,8 +8,6 @@ import Link from "next/link";
 // Letter animation component - flies in from left side of screen
 function AnimatedTitle({ text, className, delay = 0, reverse = false }: { text: string; className?: string; delay?: number; reverse?: boolean }) {
   const letters = text.split("");
-  // If reverse is true, animate from last letter to first (right to left)
-  const animatedLetters = reverse ? [...letters].reverse() : letters;
   
   const container = {
     hidden: { opacity: 1 },
@@ -18,6 +16,7 @@ function AnimatedTitle({ text, className, delay = 0, reverse = false }: { text: 
       transition: {
         staggerChildren: 0.04,
         delayChildren: delay,
+        staggerDirection: reverse ? -1 : 1, // -1 animates from last to first
       },
     },
   };
@@ -46,9 +45,9 @@ function AnimatedTitle({ text, className, delay = 0, reverse = false }: { text: 
       initial="hidden"
       animate="visible"
     >
-      {(reverse ? animatedLetters : letters).map((letter, index) => (
+      {letters.map((letter, index) => (
         <motion.span
-          key={reverse ? letters.length - 1 - index : index}
+          key={index}
           variants={child}
           className="inline-block"
           style={{ whiteSpace: letter === " " ? "pre" : "normal" }}
