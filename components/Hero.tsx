@@ -1,113 +1,191 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, ChevronDown, Play } from "lucide-react";
+import Link from "next/link";
+
+// Letter animation component - flies in from left side of screen
+function AnimatedTitle({ text, className, delay = 0, reverse = false }: { text: string; className?: string; delay?: number; reverse?: boolean }) {
+  const letters = text.split("");
+  
+  const container = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.04,
+        delayChildren: delay,
+        staggerDirection: reverse ? -1 : 1, // -1 animates from last to first
+      },
+    },
+  };
+
+  const child = {
+    hidden: {
+      opacity: 0,
+      x: "-100vw", // Start from far left off-screen
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 15,
+        mass: 0.8,
+      },
+    },
+  };
+
+  return (
+    <motion.span
+      className={`inline-block ${className}`}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {letters.map((letter, index) => (
+        <motion.span
+          key={index}
+          variants={child}
+          className="inline-block"
+          style={{ whiteSpace: letter === " " ? "pre" : "normal" }}
+        >
+          {letter === " " ? "\u00A0" : letter}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
 
 export function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const videoOpacity = useTransform(scrollYProgress, [0, 0.5], [0.7, 0.3]);
+  const textY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-32 md:pt-40">
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/Gemini_Generated_Image_vauuu2vauuu2vauu.png"
-          alt="Background Banner"
-          fill
-          className="object-cover opacity-60 scale-105 animate-pulse-slow"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+    >
+      {/* Video Background */}
+      <motion.div className="absolute inset-0 z-0" style={{ opacity: videoOpacity }}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Video overlay gradients */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80" />
-      </div>
+        
+        {/* Scanlines effect */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)",
+            backgroundSize: "100% 4px",
+          }}
+        />
+      </motion.div>
 
-      {/* Floating Gradient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-seeker-blue/30 rounded-full blur-[100px] animate-blob" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-seeker-red/20 rounded-full blur-[100px] animate-blob animation-delay-2000" />
-
-      <div className="container relative z-10 px-6 mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-seeker-gold/30 bg-seeker-gold/10 backdrop-blur-md">
-            <span className="text-seeker-gold text-xs md:text-sm font-bold tracking-wider uppercase">
-              🚀 Launching Soon on Solana
+      {/* Main Content */}
+      <motion.div 
+        className="container relative z-20 px-6 mx-auto text-center"
+        style={{ y: textY, opacity: textOpacity }}
+      >
+        {/* Main Title with Letter Animation */}
+        <div className="mb-6">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none">
+            <span className="block text-white font-mono drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+              <AnimatedTitle text="SEEKER EATS" delay={0.5} reverse={true} />
             </span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter mb-6 leading-tight">
-            The Future of <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-seeker-gold via-yellow-200 to-seeker-gold animate-gradient-x">
-              Food Delivery
-            </span>
+            <motion.span 
+              className="block text-2xl md:text-4xl lg:text-5xl mt-6 tracking-widest"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+            >
+              <span className="text-seeker-gold drop-shadow-[0_0_20px_rgba(212,175,55,0.5)]">
+                TURN YOUR STABLECOINS INTO FOOD
+              </span>
+            </motion.span>
           </h1>
-        </motion.div>
+        </div>
 
+        {/* Description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 font-light leading-relaxed"
+          transition={{ duration: 0.5, delay: 2.2 }}
+          className="text-lg md:text-2xl text-white max-w-3xl mx-auto mb-12 font-light drop-shadow-md"
         >
-          Pay with <span className="text-white font-medium">USDC stablecoins</span> for <span className="text-white font-medium">lower prices</span> on every order. 
-          Powered by the speed of Solana.
+          <span className="font-bold text-seeker-gold">Pay for your food pickup & delivery with stablecoins.</span>{" "}
+          Fast, secure, and decentralized on Solana.
         </motion.p>
 
+        {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 2.8 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
-            href="#waitlist"
-            className="group relative px-8 py-4 bg-gradient-to-r from-seeker-red to-red-600 text-white font-bold rounded-full overflow-hidden shadow-[0_0_30px_rgba(198,40,40,0.4)] hover:shadow-[0_0_50px_rgba(198,40,40,0.6)] transition-all duration-300 hover:scale-105"
+          <Link
+            href="/connect-explainer"
+            className="group relative px-8 py-4 bg-seeker-gold text-black font-bold text-lg tracking-wide overflow-hidden border-2 border-seeker-gold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
           >
-            <span className="relative z-10 flex items-center gap-2 text-lg">
-              Connect With Us <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <span className="relative z-10 flex items-center gap-3">
+              CONNECT YOUR RESTAURANT
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
             </span>
-            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </a>
+          </Link>
           <a
-            href="#why"
-            className="px-8 py-4 bg-white/5 backdrop-blur-md text-white font-bold rounded-full border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-lg"
+            href="#demo"
+            className="group relative px-8 py-4 bg-transparent text-white font-bold text-lg tracking-wide overflow-hidden border-2 border-white/30 transition-all duration-300 hover:border-seeker-gold hover:text-seeker-gold"
           >
-            Learn More
+            <span className="relative z-10 flex items-center gap-3">
+              <Play className="w-5 h-5" />
+              WATCH DEMO
+            </span>
           </a>
         </motion.div>
 
-        {/* YouTube Embed Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="mt-24 w-full max-w-5xl mx-auto"
-        >
-          <div className="text-center mb-12">
-             <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">Watch the Demo</h2>
-             <p className="text-xl text-gray-400 max-w-2xl mx-auto">See how Seeker Eats is changing the game.</p>
-          </div>
-          <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900">
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/iED8u1aI5sY"
-              title="Seeker Eats Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </motion.div>
-      </div>
-      
-      <motion.div 
+
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce"
+        transition={{ delay: 3.6, duration: 0.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
-        <ChevronDown className="w-8 h-8" />
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 text-white/70"
+        >
+          <span className="text-xs font-mono tracking-widest font-bold">SCROLL</span>
+          <ChevronDown className="w-5 h-5" />
+        </motion.div>
       </motion.div>
+
+      {/* Corner Decorations */}
+      <div className="absolute top-24 left-4 w-16 h-16 border-l-2 border-t-2 border-seeker-gold/50 z-20" />
+      <div className="absolute top-24 right-4 w-16 h-16 border-r-2 border-t-2 border-seeker-gold/50 z-20" />
     </section>
   );
 }

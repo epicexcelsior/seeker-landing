@@ -7,17 +7,18 @@
   --color-seeker-gold-light: #FDD835;
   
   --font-sans: var(--font-inter), sans-serif;
+  --font-mono: var(--font-mono), monospace;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
   }
 }
 
@@ -34,18 +35,42 @@ html {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #000;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #D4AF37;
-  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #C62828;
+}
+
+/* Selection */
+::selection {
+  background: #D4AF37;
+  color: #000;
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) {
+  .cursor-glow {
+    display: none !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
