@@ -6,9 +6,13 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Menu, X, ExternalLink } from "lucide-react";
 
-// Logo component with one-time spin animation
+// Logo component with spin on each hover
 function LogoImage() {
-  const [hasSpun, setHasSpun] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  
+  const handleHover = () => {
+    setRotation(prev => prev + 360);
+  };
   
   return (
     <motion.div
@@ -19,7 +23,7 @@ function LogoImage() {
       }}
       animate={{ 
         y: 0,
-        rotate: hasSpun ? 360 : 0 
+        rotate: rotation 
       }}
       transition={{ 
         y: {
@@ -32,10 +36,10 @@ function LogoImage() {
           type: "spring",
           stiffness: 200,
           damping: 15,
-          delay: hasSpun ? 0 : 0.3
+          duration: 0.5
         }
       }}
-      onMouseEnter={() => setHasSpun(true)}
+      onMouseEnter={handleHover}
     >
       <Image
         src="/Gemini_Generated_Image_8ni2l88ni2l88ni2.png"
