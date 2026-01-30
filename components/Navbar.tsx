@@ -46,24 +46,52 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <motion.div 
-                className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden border-2 border-seeker-gold transition-all duration-300 group-hover:border-seeker-gold group-hover:shadow-[0_0_20px_rgba(212,175,55,0.5)]"
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-                whileHover={{ 
-                  rotate: [0, -10, 10, -10, 0],
-                  transition: { duration: 0.5 }
-                }}
-              >
-                <Image
-                  src="/Gemini_Generated_Image_8ni2l88ni2l88ni2.png"
-                  alt="Seeker Eats"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-seeker-gold/20 to-transparent" />
-              </motion.div>
+              <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden border-2 border-seeker-gold transition-all duration-300 group-hover:border-seeker-gold group-hover:shadow-[0_0_20px_rgba(212,175,55,0.5)]">
+                <motion.div
+                  className="absolute inset-0"
+                  initial={{ 
+                    y: -5,
+                    rotate: -180 
+                  }}
+                  animate={{ 
+                    y: 0,
+                    rotate: 0 
+                  }}
+                  transition={{ 
+                    y: {
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 10,
+                      duration: 0.4,
+                      delay: 0.3
+                    },
+                    rotate: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15,
+                      duration: 0.5,
+                      delay: 0.3
+                    }
+                  }}
+                  whileHover={{
+                    rotate: 360,
+                    transition: { 
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                      duration: 0.4
+                    }
+                  }}
+                >
+                  <Image
+                    src="/Gemini_Generated_Image_8ni2l88ni2l88ni2.png"
+                    alt="Seeker Eats"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-br from-seeker-gold/20 to-transparent pointer-events-none" />
+              </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-xl font-black tracking-tighter text-white group-hover:text-seeker-gold transition-colors">
                   SEEKER
