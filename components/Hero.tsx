@@ -110,13 +110,13 @@ export function Hero() {
         <div className="mb-6">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none">
             <span className="block text-white font-mono drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
-              <AnimatedTitle text="SEEKER EATS" delay={0.3} reverse={true} />
+              <AnimatedTitle text="SEEKER EATS" delay={0.5} reverse={true} />
             </span>
             <motion.span 
               className="block text-2xl md:text-4xl lg:text-5xl mt-6 tracking-widest"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 2 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
             >
               <span className="text-seeker-gold drop-shadow-[0_0_20px_rgba(212,175,55,0.5)]">
                 TURN YOUR STABLECOINS INTO FOOD
@@ -125,11 +125,11 @@ export function Hero() {
           </h1>
         </div>
 
-        {/* Subtitle */}
+        {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.4 }}
+          transition={{ duration: 0.5, delay: 2.2 }}
           className="text-lg md:text-2xl text-white max-w-3xl mx-auto mb-12 font-light drop-shadow-md"
         >
           <span className="font-bold text-seeker-gold">Pay for your food pickup & delivery with stablecoins.</span>{" "}
@@ -140,7 +140,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 2.5 }}
+          transition={{ duration: 0.6, delay: 2.8 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
@@ -170,7 +170,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 3.5, duration: 0.5 }}
+        transition={{ delay: 3.6, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.div
