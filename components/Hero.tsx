@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import Link from "next/link";
 
 // Letter animation component - flies in from left side of screen
@@ -152,6 +152,15 @@ export function Hero() {
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
             </span>
           </Link>
+          <a
+            href="#demo"
+            className="group relative px-8 py-4 bg-transparent text-white font-bold text-lg tracking-wide overflow-hidden border-2 border-white/30 transition-all duration-300 hover:border-seeker-gold hover:text-seeker-gold"
+          >
+            <span className="relative z-10 flex items-center gap-3">
+              <Play className="w-5 h-5" />
+              WATCH DEMO
+            </span>
+          </a>
         </motion.div>
 
         {/* Download App CTA - Coming Soon */}
