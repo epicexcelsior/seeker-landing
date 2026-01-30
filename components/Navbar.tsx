@@ -115,11 +115,11 @@ export function Navbar() {
             <div className="hidden lg:block">
               <Link
                 href="/connect-explainer"
-                className="group relative px-6 py-3 bg-seeker-gold text-black font-bold text-sm tracking-wide border-2 border-seeker-gold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.5)]"
+                className="group relative px-6 py-2.5 bg-seeker-gold text-black font-bold text-sm tracking-wide transition-all duration-300 hover:brightness-110 hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] active:scale-95"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   CONNECT
-                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                 </span>
               </Link>
             </div>

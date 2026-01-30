@@ -127,9 +127,9 @@ export function Hero() {
 
         {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 2 }}
+          transition={{ duration: 0.5, delay: 1.4 }}
           className="text-lg md:text-2xl text-white max-w-3xl mx-auto mb-12 font-light drop-shadow-md"
         >
           <span className="font-bold text-seeker-gold">Pay for your food pickup & delivery with stablecoins.</span>{" "}
