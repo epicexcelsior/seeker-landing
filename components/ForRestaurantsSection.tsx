@@ -2,26 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Store, ArrowRight, Link2, Zap, Shield } from "lucide-react";
+import { Store, ArrowRight } from "lucide-react";
 import Link from "next/link";
-
-const benefits = [
-  {
-    icon: Link2,
-    title: "Zero Changes Required",
-    description: "Keep using your existing POS system. We integrate seamlessly with Square - no new hardware, no retraining staff.",
-  },
-  {
-    icon: Zap,
-    title: "Instant Payments",
-    description: "Receive USDC stablecoins directly to your wallet. No waiting for payouts, no chargebacks, no hassle.",
-  },
-  {
-    icon: Shield,
-    title: "Lower Fees",
-    description: "Stop overpaying traditional delivery apps. Our decentralized model means more profit stays with you.",
-  },
-];
 
 export function ForRestaurantsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -76,25 +58,7 @@ export function ForRestaurantsSection() {
           </motion.div>
         </div>
 
-        {/* Benefits Grid */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {benefits.map((benefit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-8 border-2 border-white/10 bg-black/50 hover:border-seeker-gold/50 transition-all duration-300"
-            >
-              <div className="w-14 h-14 bg-seeker-gold/20 border-2 border-seeker-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <benefit.icon className="w-7 h-7 text-seeker-gold" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
-              <p className="text-white/70 leading-relaxed">{benefit.description}</p>
-            </motion.div>
-          ))}
-        </div>
+
       </div>
     </section>
   );
