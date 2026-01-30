@@ -1,50 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useScrollProgress } from "@/lib/hooks";
 
 export function GlobalEffects() {
   const scrollProgress = useScrollProgress();
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.dataset.hover === "true"
-      ) {
-        setIsHovering(true);
-      }
-    };
-
-    const handleMouseOut = () => {
-      setIsHovering(false);
-    };
-
-    const timer = setTimeout(() => setIsVisible(true), 100);
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseout", handleMouseOut);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mouseout", handleMouseOut);
-      clearTimeout(timer);
-    };
-  }, []);
 
   return (
     <>
@@ -58,30 +19,6 @@ export function GlobalEffects() {
           transition={{ duration: 0.3 }}
         />
       </div>
-
-      {/* Custom Cursor Glow */}
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            className="fixed pointer-events-none z-[9999] mix-blend-screen"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: isHovering ? 0.8 : 0.4,
-              scale: isHovering ? 2 : 1,
-              x: cursorPosition.x - 150,
-              y: cursorPosition.y - 150,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 500,
-              damping: 28,
-              mass: 0.5,
-            }}
-          >
-            <div className="w-[300px] h-[300px] rounded-full bg-gradient-to-br from-seeker-gold/30 via-seeker-red/20 to-seeker-blue/30 blur-[100px]" />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Matrix Rain Effect - Minimal */}
       <MatrixRain />

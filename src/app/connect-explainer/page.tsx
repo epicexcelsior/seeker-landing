@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   CheckCircle,
   Store,
@@ -50,12 +51,25 @@ export default function ConnectExplainerPage() {
   return (
     <main className="min-h-screen bg-black text-white selection:bg-seeker-gold selection:text-black">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-6 bg-black/50 backdrop-blur-xl border-b border-white/5">
-        <Link
-          href="/"
-          className="text-2xl md:text-3xl font-bold text-white hover:text-seeker-gold transition-colors"
-        >
-          ← Seeker Eats
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-6 bg-black/80 backdrop-blur-xl border-b-2 border-seeker-gold/30">
+        <Link href="/" className="flex items-center gap-3 group">
+          <motion.div 
+            className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden border-2 border-seeker-gold"
+            whileHover={{ 
+              rotate: [0, -10, 10, -10, 0],
+              transition: { duration: 0.5 }
+            }}
+          >
+            <Image
+              src="/Gemini_Generated_Image_8ni2l88ni2l88ni2.png"
+              alt="Seeker Eats"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-white group-hover:text-seeker-gold transition-colors">
+            SEEKER EATS
+          </span>
         </Link>
       </header>
 
@@ -70,51 +84,50 @@ export default function ConnectExplainerPage() {
               className="space-y-10"
             >
               <div>
-                <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                <span className="text-seeker-gold font-mono text-sm tracking-widest mb-4 block">{"// RESTAURANT CONNECT"}</span>
+                <h1 className="text-4xl md:text-6xl font-black mb-4 leading-tight tracking-tighter">
                   Connect Your <br />
                   <span className="text-seeker-gold">Restaurant</span>
                 </h1>
-                <p className="text-xl text-gray-400">
-                  Join the food delivery revolution.
+                <p className="text-xl text-white/80">
+                  Link your Square account and start receiving orders in minutes.
                 </p>
               </div>
 
               {/* Steps */}
               <div className="space-y-6">
                 <div className="flex items-center gap-6 group">
-                  <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-bold text-xl text-seeker-gold group-hover:bg-seeker-gold group-hover:text-black transition-colors">
+                  <div className="w-14 h-14 bg-seeker-gold/20 border-2 border-seeker-gold flex items-center justify-center font-bold text-xl text-seeker-gold group-hover:bg-seeker-gold group-hover:text-black transition-colors">
                     1
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Click Connect</h3>
-                    <p className="text-gray-400 text-sm">
-                      Login directly with Square (we can&apos;t access your Square
-                      account)
+                    <h3 className="text-xl font-bold text-white">Click Connect</h3>
+                    <p className="text-white/70 text-sm">
+                      Login directly with Square (we can&apos;t access your Square account)
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-6 group">
-                  <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-bold text-xl text-seeker-gold group-hover:bg-seeker-gold group-hover:text-black transition-colors">
+                  <div className="w-14 h-14 bg-seeker-gold/20 border-2 border-seeker-gold flex items-center justify-center font-bold text-xl text-seeker-gold group-hover:bg-seeker-gold group-hover:text-black transition-colors">
                     2
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Approve Access</h3>
-                    <p className="text-gray-400 text-sm">
-                      Grant menu & order permissions. You can revoke this at any
-                      time.
+                    <h3 className="text-xl font-bold text-white">Approve Access</h3>
+                    <p className="text-white/70 text-sm">
+                      Grant menu & order permissions. Revoke anytime.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-6 group">
-                  <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-bold text-xl text-seeker-gold group-hover:bg-seeker-gold group-hover:text-black transition-colors">
+                  <div className="w-14 h-14 bg-seeker-gold/20 border-2 border-seeker-gold flex items-center justify-center font-bold text-xl text-seeker-gold group-hover:bg-seeker-gold group-hover:text-black transition-colors">
                     3
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Go Live!</h3>
-                    <p className="text-gray-400 text-sm">
-                      Start receiving crypto orders
+                    <h3 className="text-xl font-bold text-white">Start Receiving Orders</h3>
+                    <p className="text-white/70 text-sm">
+                      Get instant USDC payments for every order
                     </p>
                   </div>
                 </div>
@@ -123,43 +136,43 @@ export default function ConnectExplainerPage() {
               {/* Data Access Sections */}
               <div className="grid md:grid-cols-2 gap-6">
                 {/* What we access */}
-                <div className="bg-green-500/5 rounded-2xl p-6 border border-green-500/20">
-                  <h3 className="text-green-500 font-semibold mb-4 flex items-center gap-2">
+                <div className="bg-seeker-gold/10 border-2 border-seeker-gold/30 p-6">
+                  <h3 className="text-seeker-gold font-bold mb-4 flex items-center gap-2">
                     <CheckCircle className="w-5 h-5" /> What we access
                   </h3>
-                  <ul className="space-y-3 text-sm text-gray-300">
+                  <ul className="space-y-3 text-sm text-white/80">
                     <li className="flex gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                      <div className="w-1.5 h-1.5 bg-seeker-gold mt-2" />
                       Menu items & prices
                     </li>
                     <li className="flex gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                      <div className="w-1.5 h-1.5 bg-seeker-gold mt-2" />
                       Create and pay for orders
                     </li>
                     <li className="flex gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
-                      Common business info
+                      <div className="w-1.5 h-1.5 bg-seeker-gold mt-2" />
+                      Business info only
                     </li>
                   </ul>
                 </div>
 
                 {/* What we DONT access */}
-                <div className="bg-red-500/5 rounded-2xl p-6 border border-red-500/20">
-                  <h3 className="text-red-500 font-semibold mb-4 flex items-center gap-2">
-                    <Shield className="w-5 h-5" /> What we DON&apos;T access
+                <div className="bg-white/5 border-2 border-white/10 p-6">
+                  <h3 className="text-white font-bold mb-4 flex items-center gap-2">
+                    <Shield className="w-5 h-5 text-seeker-red" /> What we DON&apos;T access
                   </h3>
-                  <ul className="space-y-3 text-sm text-gray-300">
+                  <ul className="space-y-3 text-sm text-white/70">
                     <li className="flex gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2" />
+                      <div className="w-1.5 h-1.5 bg-seeker-red mt-2" />
                       Bank accounts
                     </li>
                     <li className="flex gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2" />
-                      Customer lists
+                      <div className="w-1.5 h-1.5 bg-seeker-red mt-2" />
+                      Customer data
                     </li>
                     <li className="flex gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2" />
-                      Employee data
+                      <div className="w-1.5 h-1.5 bg-seeker-red mt-2" />
+                      Employee info
                     </li>
                   </ul>
                 </div>
@@ -170,18 +183,23 @@ export default function ConnectExplainerPage() {
                 <button
                   onClick={handleConnect}
                   disabled={loading}
-                  className="w-full md:w-auto px-10 py-5 text-xl font-bold text-black bg-gradient-to-r from-seeker-gold to-seeker-gold-light rounded-full hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:pointer-events-none"
+                  className="w-full md:w-auto px-10 py-5 text-xl font-bold text-black bg-seeker-gold border-2 border-seeker-gold hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:pointer-events-none"
                 >
                   {loading ? (
-                    <>Connecting...</>
+                    <>
+                      <div className="w-6 h-6 border-2 border-black border-t-transparent animate-spin" />
+                      Connecting...
+                    </>
                   ) : (
                     <>
-                      Connect with Square <ArrowRight className="w-6 h-6" />
+                      <Store className="w-6 h-6" />
+                      Connect with Square
+                      <ArrowRight className="w-6 h-6" />
                     </>
                   )}
                 </button>
                 {error && (
-                  <p className="mt-4 text-red-500 bg-red-500/10 p-3 rounded-lg text-sm inline-block">
+                  <p className="mt-4 text-seeker-red bg-seeker-red/10 border border-seeker-red/30 p-3 text-sm inline-block">
                     {error}
                   </p>
                 )}
@@ -196,31 +214,30 @@ export default function ConnectExplainerPage() {
               className="hidden lg:flex justify-center items-center relative"
             >
               {/* Abstract decorative circles */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-seeker-gold/5 rounded-full blur-3xl" />
-              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-12 rounded-3xl shadow-2xl max-w-md w-full">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-seeker-gold/5 blur-3xl" />
+              <div className="relative bg-black/50 backdrop-blur-xl border-2 border-seeker-gold/30 p-12 max-w-md w-full">
                 <div className="flex flex-col items-center text-center space-y-6">
-                  <div className="w-24 h-24 bg-seeker-gold rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+                  <div className="w-24 h-24 bg-seeker-gold border-2 border-seeker-gold flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.3)]">
                     <Store className="w-12 h-12 text-black" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold mb-2">
-                      Partner with Seeker
+                    <h3 className="text-2xl font-bold mb-2 text-white">
+                      Zero Setup Cost
                     </h3>
-                    <p className="text-gray-400">
-                      Integration allows us to send orders directly to your POS
-                      system without extra hardware.
+                    <p className="text-white/70">
+                      Use your existing Square POS. No new hardware required.
                     </p>
                   </div>
                   <div className="w-full h-px bg-white/10" />
                   <div className="flex justify-between w-full text-sm">
-                    <span className="text-gray-500">Setup Time</span>
-                    <span className="text-seeker-gold font-bold">
+                    <span className="text-white/60">Setup Time</span>
+                    <span className="text-seeker-gold font-bold font-mono">
                       ~2 Minutes
                     </span>
                   </div>
                   <div className="flex justify-between w-full text-sm">
-                    <span className="text-gray-500">Cost</span>
-                    <span className="text-seeker-gold font-bold">$0.00</span>
+                    <span className="text-white/60">Cost</span>
+                    <span className="text-seeker-gold font-bold font-mono">FREE</span>
                   </div>
                 </div>
               </div>

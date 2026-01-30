@@ -26,14 +26,12 @@ export function Footer() {
               <ul className="space-y-2">
                 <li><Link href="#why" className="text-gray-500 hover:text-seeker-gold transition-colors text-sm">Why Us?</Link></li>
                 <li><Link href="#for-restaurants" className="text-gray-500 hover:text-seeker-gold transition-colors text-sm">For Restaurants</Link></li>
-                <li><Link href="#invest" className="text-gray-500 hover:text-seeker-gold transition-colors text-sm">Invest</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-4 text-sm">Resources</h4>
               <ul className="space-y-2">
                 <li><Link href="/connect-explainer" className="text-gray-500 hover:text-seeker-gold transition-colors text-sm">Connect Restaurant</Link></li>
-                <li><Link href="#waitlist" className="text-gray-500 hover:text-seeker-gold transition-colors text-sm">Join Waitlist</Link></li>
                 <li><Link href="https://github.com/obamna1/seekereats-relay" target="_blank" className="text-gray-500 hover:text-seeker-gold transition-colors text-sm">GitHub</Link></li>
               </ul>
             </div>
