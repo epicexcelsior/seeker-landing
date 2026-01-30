@@ -106,30 +106,22 @@ export function Hero() {
         className="container relative z-20 px-6 mx-auto text-center"
         style={{ y: textY, opacity: textOpacity }}
       >
-        {/* Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 mb-8 px-4 py-2 border-2 border-seeker-gold bg-black/70 backdrop-blur-sm"
-        >
-          <span className="w-2 h-2 bg-seeker-red animate-pulse" />
-          <span className="text-seeker-gold text-xs font-bold font-mono tracking-widest uppercase">
-            Powered by Solana
-          </span>
-        </motion.div>
-
         {/* Main Title with Letter Animation */}
         <div className="mb-6">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none">
             <span className="block text-white font-mono drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
               <AnimatedTitle text="SEEKER EATS" delay={0.3} reverse={true} />
             </span>
-            <span className="block text-3xl md:text-5xl lg:text-6xl mt-4">
+            <motion.span 
+              className="block text-2xl md:text-4xl lg:text-5xl mt-6 tracking-widest"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 2 }}
+            >
               <span className="text-seeker-gold drop-shadow-[0_0_20px_rgba(212,175,55,0.5)]">
-                <AnimatedTitle text="TURN YOUR STABLECOINS INTO FOOD" delay={1.2} reverse={true} />
+                TURN YOUR STABLECOINS INTO FOOD
               </span>
-            </span>
+            </motion.span>
           </h1>
         </div>
 
@@ -170,12 +162,15 @@ export function Hero() {
           className="mt-8"
         >
           <p className="text-white/70 text-sm mb-3 font-mono">Coming Soon</p>
-          <div className="flex items-center justify-center gap-4">
-            <button className="px-6 py-3 border-2 border-white/20 text-white/40 font-bold text-sm cursor-not-allowed">
-              App Store
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <button className="px-5 py-3 border-2 border-white/20 text-white/40 font-bold text-xs cursor-not-allowed">
+              iOS App Store
             </button>
-            <button className="px-6 py-3 border-2 border-white/20 text-white/40 font-bold text-sm cursor-not-allowed">
-              Play Store
+            <button className="px-5 py-3 border-2 border-white/20 text-white/40 font-bold text-xs cursor-not-allowed">
+              Google Play
+            </button>
+            <button className="px-5 py-3 border-2 border-white/20 text-white/40 font-bold text-xs cursor-not-allowed">
+              Solana Mobile Dapp Store
             </button>
           </div>
         </motion.div>
