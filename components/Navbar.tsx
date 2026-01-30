@@ -82,6 +82,7 @@ export function Navbar() {
                       duration: 0.4
                     }
                   }}
+                  onHoverEnd={() => {}}
                 >
                   <Image
                     src="/Gemini_Generated_Image_8ni2l88ni2l88ni2.png"
@@ -115,12 +116,10 @@ export function Navbar() {
             <div className="hidden lg:block">
               <Link
                 href="/connect-explainer"
-                className="group relative px-6 py-2.5 bg-seeker-gold text-black font-bold text-sm tracking-wide transition-all duration-300 hover:brightness-110 hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] active:scale-95"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-seeker-gold text-black font-bold text-sm border border-seeker-gold hover:bg-white hover:border-white hover:text-black transition-all duration-200"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  CONNECT
-                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
-                </span>
+                CONNECT
+                <ExternalLink className="w-4 h-4" />
               </Link>
             </div>
 
