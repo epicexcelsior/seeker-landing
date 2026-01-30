@@ -66,7 +66,7 @@ function SuccessContent() {
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            You're <span className="text-seeker-gold">Connected!</span>
+            You&apos;re <span className="text-seeker-gold">Connected!</span>
           </h1>
 
           <p className="text-xl text-gray-400 mb-4">
@@ -114,7 +114,7 @@ function SuccessContent() {
               <div>
                 <h3 className="font-semibold mb-1">Order Notifications</h3>
                 <p className="text-gray-400 text-sm">
-                  When customers order, you'll receive a call with order details
+                  When customers order, you&apos;ll receive a call with order details
                   to confirm.
                 </p>
               </div>
@@ -125,7 +125,7 @@ function SuccessContent() {
                 <Clock className="w-5 h-5 text-seeker-gold" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1">We'll Be In Touch</h3>
+                <h3 className="font-semibold mb-1">We&apos;ll Be In Touch</h3>
                 <p className="text-gray-400 text-sm">
                   Our team will reach out within 24-48 hours to finalize your
                   onboarding.

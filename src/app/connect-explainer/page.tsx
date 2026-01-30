@@ -6,10 +6,8 @@ import { motion } from "framer-motion";
 import {
   CheckCircle,
   Store,
-  Zap,
   Shield,
   ArrowRight,
-  XCircle,
 } from "lucide-react";
 
 // Relay API URL - Hardcoded to feature branch for testing as requested
@@ -90,7 +88,7 @@ export default function ConnectExplainerPage() {
                   <div>
                     <h3 className="text-xl font-semibold">Click Connect</h3>
                     <p className="text-gray-400 text-sm">
-                      Login directly with Square (we can't access your Square
+                      Login directly with Square (we can&apos;t access your Square
                       account)
                     </p>
                   </div>
@@ -148,7 +146,7 @@ export default function ConnectExplainerPage() {
                 {/* What we DONT access */}
                 <div className="bg-red-500/5 rounded-2xl p-6 border border-red-500/20">
                   <h3 className="text-red-500 font-semibold mb-4 flex items-center gap-2">
-                    <Shield className="w-5 h-5" /> What we DON'T access
+                    <Shield className="w-5 h-5" /> What we DON&apos;T access
                   </h3>
                   <ul className="space-y-3 text-sm text-gray-300">
                     <li className="flex gap-2">
