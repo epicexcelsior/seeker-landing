@@ -129,7 +129,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 2.5 }}
+          transition={{ duration: 0.6, delay: 2 }}
           className="text-lg md:text-2xl text-white max-w-3xl mx-auto mb-12 font-light drop-shadow-md"
         >
           <span className="font-bold text-seeker-gold">Pay for your food pickup & delivery with stablecoins.</span>{" "}
@@ -140,7 +140,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 3 }}
+          transition={{ duration: 0.6, delay: 2.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
@@ -158,7 +158,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 3.2 }}
+          transition={{ duration: 0.6, delay: 2.7 }}
           className="mt-8"
         >
           <p className="text-white/70 text-sm mb-3 font-mono">Coming Soon</p>
